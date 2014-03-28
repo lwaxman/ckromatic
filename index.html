@@ -1,0 +1,129 @@
+<html>
+<head>
+	<title>Colours of Flickr</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+
+		var interestingnessURL = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=91f8dae63570834618a764ae1be825d0&format=json&nojsoncallback=1&auth_token=72157643075321164-e142006f2fc0229b&api_sig=5c6e4c82aca82c34dee4b0302f89e984"
+
+		// d3.json(interestingnessURL, function(error, json) {
+		// 	if (error) return console.warn(error);
+		// 	console.log(json);
+		// 	visualizeData(json.feed.entry);
+		// });
+
+		d3.json(interestingnessURL, function(data) {
+			console.log(data);
+			visualizeData(data.photos.photo);
+		});
+		
+		function visualizeData(data){
+			//farm{farm-id}.staticflickr.com/{server-id}/{id}_{o-secret}_{size}.(jpg|gif|png)
+
+			var farm;
+			var server_id;
+			var id;
+			var o_secret; 
+			var img_URL;
+			var imageURLS = new Array();
+			var count = 0;
+
+			//save data to arrays maybe?
+			//can't do it outside of d3 because it does not have the data!!
+			//save all urls to array!!
+			d3.select("body").selectAll("canvas")
+				.data(data)
+				.enter()
+				.append("canvas")
+				.attr("class", "image")
+				.each(function(d){
+					farm = d['farm'];
+					server_id = d['server'];
+					id = d['id'];
+					o_secret = d['secret'];
+					img_URL = "https://farm"+ farm +".staticflickr.com/"+ server_id +"/"+ id +"_"+ o_secret +"_s.jpg";
+					imageURLS[count] = img_URL;
+					count++;
+				});
+				// .style("background-image", function(d){
+				// 	farm = d['farm'];
+				// 	server_id = d['server'];
+				// 	id = d['id'];
+				// 	o_secret = d['secret'];
+				// 	img_URL = "https://farm"+ farm +".staticflickr.com/"+ server_id +"/"+ id +"_"+ o_secret +"_s.jpg";
+				// 	return "url('"+img_URL+"')";
+				// 	});
+
+			// console.log(imageURLS);
+			var imageList = document.getElementsByClassName("image");
+			//console.log(imageList.length);
+
+			//all 
+			
+			for (var i=0; i<imageList.length; i++){
+				var thisCanvas = imageList[i];
+				console.log(thisCanvas);
+				var context = thisCanvas.getContext("2d");
+				var thisImageURL = imageURLS[i];
+				console.log(thisImageURL);
+				// context.drawImage(imageURLS[i], 0, 0);
+				var img = new Image;
+				img.onload = function(){
+					context.drawImage(img,0,0); // Or at whatever offset you like
+				};
+				img.src = "" + thisImageURL + "";
+				//var imageData = context.getImageData(0,0,50,50);
+				//var pixels = imageData.data;
+				//console.log(pixels);
+				//console.log(pixels.length); //10000 because it's 50x50px, times r g b + a values for each pixel.
+				// d3.select("body").selectAll("canvas")
+				// 	.data(pixels)
+				// 	.enter()
+				// 	.append("canvas")
+				// 	.attr("class", "newImage")
+				// 	.each(function(d){
+				// 		var newImage = d;
+				// 		var newContext = newImage.getContext("2d");
+				// 		newContext.putImageData(d[i],10,70);
+				// 	});
+				// imageList[i];
+			}
+
+			// var image = new Image();
+			// image.onLoad = function(){
+			// 	for(var i=0; i<100; i++){
+			// 		var context = thisImage.getContext("2d");
+			// 		context.drawImage(img_URL, 0, 0);
+			// 	}
+			// }
+			// image.src = url;
+
+			// console.log(imageList);
+			// console.log(imageList.length);
+
+			// d3.select("body").selectAll("div")
+			// 	.data(data)
+			// 	.enter()
+			// 	.append("div")
+			// 	.attr("class", "image")
+			// 	.style("background-image", function(d){
+			// 		farm = d['farm'];
+			// 		server_id = d['server'];
+			// 		id = d['id'];
+			// 		o_secret = d['secret'];
+			// 		return "url('https://farm"+ farm +".staticflickr.com/"+ server_id +"/"+ id +"_"+ o_secret +"_s.jpg')";
+			// 	});
+
+		}
+
+		// function getPixels(){}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+
+*{
+	/*padding: 0;*/
+	/*margin: 0;*/
+}
+
+html{
+	font-size: 10pt;
+}
+
+.image{
+	width: 5rem;
+	height: 5rem;
+	display: inline-block;
+	margin: .5rem;
+}
+
+.newImage{
+	width: 5rem;
+	height: 5rem;
+	display: inline-block;
+	margin: .5rem;
+	background: rgb(93,167,167);
+}
