@@ -5,7 +5,8 @@
 }
 
 html{
-	font-size: 10pt;
+	font-size: 10px;
+	font-family: 'Orbitron', sans-serif;
 }
 
 .image{
@@ -13,12 +14,22 @@ html{
 	height: 5rem;
 	display: inline-block;
 	margin: .5rem;
+	background: blue;
 }
 
-.newImage{
+.imageCanvas{
 	width: 5rem;
 	height: 5rem;
 	display: inline-block;
 	margin: .5rem;
-	background: rgb(93,167,167);
+	background: rgb(93,100,167);
+}
+
+a{
+	font-size: 1.6rem;
+	color: #FF6185;
+	text-decoration: none;
+}
+a:hover{
+	color: #C95A6E;
 }
