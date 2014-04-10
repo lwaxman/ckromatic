@@ -1,51 +1,13 @@
 
 
-<html>
-<head>
-	<title>Colours of Flickr</title>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="assets/main.css">
-	<link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300' rel='stylesheet' type='text/css'> <!-- google font -->
-</head>
-
-<body>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> <!-- jquery.js -->
-	<script src="../../scripts/quantize.js"></script> <!-- quantize.js -->
-	<script src="../../scripts/color-thief.js"></script> <!-- color-thief.js -->
-	<script src="../../scripts/jquery.lettering-0.6.1.min.js"></script> <!-- lettering.js -->
-	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> <!-- d3.js -->
-
-	<div id="titleBox">
-		<p id="titleOne">Colours</p><p id="titleTwo">of Flickr</p>
-	</div>
-	
-	<svg id="chart"></svg>
-	
-	<script type="text/javascript">
-
-	$(document).ready(function() {
+ function() {
 
 		$("#titleOne").lettering();
 
-		var days = new Array();
-
-		days[0] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=d6a7a478b5c00470404cd2d6fbb015c6&per_page=10&format=json&nojsoncallback=1&auth_token=72157643729774584-59a479c75d83ae9e&api_sig=59306ca1a2b1b3f30c71e593c12370ab"; 
-		days[1] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=d6a7a478b5c00470404cd2d6fbb015c6&date=2014-04-08&per_page=10&format=json&nojsoncallback=1&auth_token=72157643729774584-59a479c75d83ae9e&api_sig=d77c9e7c96c846cb3c6da3e4cc464eb7";
-		days[2] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=d6a7a478b5c00470404cd2d6fbb015c6&date=2014-04-07&per_page=10&format=json&nojsoncallback=1&auth_token=72157643729774584-59a479c75d83ae9e&api_sig=667b89dac28f4249e159b90bfff8809c";
-		days[3] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=d6a7a478b5c00470404cd2d6fbb015c6&date=2014-04-06&per_page=10&format=json&nojsoncallback=1&auth_token=72157643729774584-59a479c75d83ae9e&api_sig=98a437963195b12473986ae1fbae5aa9";
-		days[4] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=d6a7a478b5c00470404cd2d6fbb015c6&date=2014-04-05&per_page=10&format=json&nojsoncallback=1&auth_token=72157643729774584-59a479c75d83ae9e&api_sig=cfcf02f38c9fec62858322de39030f07";
-		// days[5] = "";
+				// days[5] = "";
 		// days[6] = "";
 
-		var q=0;
-		for(q=0; q<5; q++){
-			!function inner(q){
-				console.log('load', q)
-				d3.json(days[q], function(data) {
-					visualizeData(data.photos.photo, q*60); //path to each individual photo
-				});	
-			}(q);
-		}
+		
 
 		//it is using finding all canvases every time, 
 		//so it is only getting data from the first canvases, and then failing... ??
@@ -191,6 +153,4 @@
 		}
 
 	});//end document.ready
-	</script>
-</body>
-</html>
+
