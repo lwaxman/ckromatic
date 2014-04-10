@@ -1,86 +1,61 @@
 
 
- function() {
+ // function() {
 
-		$("#titleOne").lettering();
+		// $("#titleOne").lettering();
 
-				// days[5] = "";
+		// days[5] = "";
 		// days[6] = "";
-
 		
-
-		//it is using finding all canvases every time, 
-		//so it is only getting data from the first canvases, and then failing... ??
-
-		// d3.json(dayBack0, function(data) {
-		// 	visualizeData(data.photos.photo, 0); 
-		// });
-		// d3.json(dayBack1, function(data) {
-		// 	visualizeData(data.photos.photo, 60); 
-		// });
-		// d3.json(dayBack2, function(data) {
-		// 	visualizeData(data.photos.photo, 120); 
-		// });
-		// d3.json(dayBack3, function(data) {
-		// 	visualizeData(data.photos.photo, 180); 
-		// });
-		// d3.json(dayBack4, function(data) {
-		// 	visualizeData(data.photos.photo, 240); 
-		// });
-		// d3.json(dayBack5, function(data) {
-		// 	visualizeData(data.photos.photo, 300); 
-		// });
-
-		
-		function visualizeData(data, startPos, canvasName){
+		// function visualizeData(data, startPos, canvasName){
 
 			//converts degrees to radians
 			//from http://nickthecoder.wordpress.com/2012/04/15/radian-and-degree-conversion-in-javascript/
-			Math.radians = function(degrees){
-				return degrees * (Math.PI/180);
-			}
+			// Math.radians = function(degrees){
+			// 	return degrees * (Math.PI/180);
+			// }
 
 			//variables to hold all necessary data from json
-			var farm;
-			var server_id;
-			var id;
-			var o_secret; 
-			var img_URL;
-			var imageURLS = new Array();
-			var count = 0;
+			// var farm;
+			// var server_id;
+			// var id;
+			// var o_secret; 
+			// var img_URL;
+			// var imageURLS = new Array();
+			// var count = 0;
 
-			//create as many divs as data, 
-			//and save all urls to array
-			d3.select("body").selectAll("div")//canvas
-				.data(data)
-				.enter()
-				.append("div")//canvas
-				.attr("width", "100")
-				.attr("height", "100")
-				.attr("class", "image")
-				.each(function(d){
-					farm = d['farm'];
-					server_id = d['server'];
-					id = d['id'];
-					o_secret = d['secret'];
-					img_URL = "http://www.lauriewaxman.com/datadesigncode/realtime/proxy.php?src=https://farm"+ farm +".staticflickr.com/"+ server_id +"/"+ id +"_"+ o_secret +"_s.jpg";
-					imageURLS[count] = img_URL;
-					count++;
-				});
+			// //create as many divs as data, 
+			// //and save all urls to array
+			// d3.select("body").selectAll("div")//canvas
+			// 	.data(data)
+			// 	.enter()
+			// 	.append("div")//canvas
+			// 	.attr("width", "100")
+			// 	.attr("height", "100")
+			// 	.attr("class", "image")
+			// 	.each(function(d){
+			// 		farm = d['farm'];
+			// 		server_id = d['server'];
+			// 		id = d['id'];
+			// 		o_secret = d['secret'];
+			// 		img_URL = "http://www.lauriewaxman.com/datadesigncode/realtime/proxy.php?src=https://farm"+ farm +".staticflickr.com/"+ server_id +"/"+ id +"_"+ o_secret +"_s.jpg";
+			// 		imageURLS[count] = img_URL;
+			// 		count++;
+			// 	});
 
 			//save all images to array
-			var imageList = document.getElementsByClassName("image");
+			// var imageList = document.getElementsByClassName("image");
 
 			//runs through images, 
-			var imageCount = 0;
-			for (imageCount=0; imageCount<imageList.length; imageCount++){
+			// var imageCount = 0;
+			// for (imageCount=0; imageCount<imageList.length; imageCount++){
 			
-				//READ THIS!!! http://tobyho.com/2011/11/02/callbacks-in-loops/
-				!function inner(imageCount){
+			// 	//READ THIS!!! http://tobyho.com/2011/11/02/callbacks-in-loops/
+			// 	!function inner(imageCount){
 					
-					var thisImageURL = imageURLS[imageCount];//get current image url
+			// 		var thisImageURL = imageURLS[imageCount];//get current image url
 					
-					var img = new Image; //creates new image
+			// 		var img = new Image; //creates new image
 
 					//runs image through Color Thief
 					img.onload = function(){
@@ -101,7 +76,7 @@
 					
 						// count = imageList.length;
 						
-						//run through canvases to get
+						//run through images to get
 						for(var j=0; j<imageList.length; j++){
 
 							//get j-th colour from palette
@@ -138,19 +113,15 @@
 
 					};//end image.onload
 
-					//source url of the image, accessed from onload
-					img.src = "" + thisImageURL + "";
+	// 				//source url of the image, accessed from onload
+	// 				img.src = "" + thisImageURL + "";
 
-				}(imageCount); //end inner loop
+	// 			}(imageCount); //end inner loop
 
-			}//end run through canvases
+	// 		}//end run through canvases
 
-		}//end visualizeData()
+	// 	}//end visualizeData()
 
-		function drawArcs(){
 
-			
-		}
-
-	});//end document.ready
+	// });//end document.ready
 
