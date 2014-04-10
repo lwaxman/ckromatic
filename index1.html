@@ -1,0 +1,104 @@
+<html>
+<head>
+	<title>Colours of Flickr</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<link href='http://fonts.googleapis.com/css?family=Orbitron:400,500,700,900' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>   
+
+ 	<!-- <a href="https://api.instagram.com/oauth/authorize/?client_id=ab297bed313845beac3059f1bf8ed54a&redirect_uri=http://lauriewaxman.com/datadesigncode/realtime&response_type=token">click me!</a> -->
+ 	<!-- https://instagram.com/oauth/authorize/?client_id=CLIENT-ID&redirect_uri=REDIRECT-URI&response_type=token -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> <!-- jquery.js -->
+	<script src="../../scripts/quantize.js"></script> <!-- quantize.js -->
+	<script src="../../scripts/color-thief.js"></script> <!-- color-thief.js -->
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> <!-- d3.js -->
+	<script type="text/javascript">
+
+		//graph.facebook.com/me/photos
+		// key = db7211ccb284903f1072aef2e78025a6
+		// secret = e3f7407b432cd766
+
+		instagramURL = "https://api.instagram.com/v1/media/popular?client_id=ab297bed313845beac3059f1bf8ed54a&format=json";
+
+		d3.json(instagramURL, function(data) {
+			console.log(data);
+			visualizeData(data.data.images); //path to each individual photo
+		});
+	
+
+		
+		function visualizeData(data){
+			//farm{farm-id}.staticflickr.com/{server-id}/{id}_{o-secret}_{size}.(jpg|gif|png)
+
+
+			d3.select("body").selectAll("img")
+				.data(data)
+				.enter()
+				.append("img")
+				.attr("class", "image")
+				.attr("src", function(d){
+					farm = d['farm'];
+					server_id = d['server'];
+					id = d['id'];
+					o_secret = d['secret'];
+					img_URL = "https://farm"+ farm +".staticflickr.com/"+ server_id +"/"+ id +"_"+ o_secret +"_s.jpg";
+					imageURLS[count] = img_URL;
+					count++;
+					return ""+img_URL+"";
+				});
+
+			// d3.select("body").selectAll("canvas")
+			// 	.data(data)
+			// 	.enter()
+			// 	.append("canvas")
+			// 	.attr("class", "imageCanvas");
+
+			// var imageList = document.getElementsByClassName("image");
+			// var canvasList = document.getElementsByClassName("imageCanvas");
+			// //var img = document.getElementById("preview");
+			// var dataURIs = new Array();
+
+			// var i = 0;
+			// for (i=0; i<100; i++){
+			// 	// var thisCanvas = canvasList[i];
+			// 	// var thisContext = thisCanvas.getContext("2d");
+			// 	// var thisImageURL = imageURLS[i];
+			// 	// // console.log(thisCanvas);
+			// 	// // console.log(thisImageURL);
+			// 	// var img = new Image;
+			// 	// img.src = "" + thisImageURL + "";
+			// 	// thisContext.drawImage(img,0,0,300,150); //draw the darned thing to the canvas. WHY SO SQUISHED??
+			// 	// var thisImageData = thisContext.getImageData(0,0,50,50);
+
+			// 	// var thisCanvas = canvasList[i];
+			// 	// var thisContext = thisCanvas.getContext("2d");
+			// 	//var img = imageList[i];
+			// 	$(window).ready(function(){
+			// 		var sourceImage = imageList[i];
+			// 		var colorThief = new ColorThief();
+			// 		var color = colorThief.getColor(sourceImage);
+			// 		console.log(color);
+			// 		//document.getElementById("mydiv").style.backgroundColor = "rgb(" + color + ")";
+			// 	});
+
+			// 	// var myImage = $(imageList[i]);
+			// 	// paletteArray = Palette(myImage, 5); 
+			// 	//thisContext.drawImage(img,0,0,300,150); //draw the darned thing to the canvas. WHY SO SQUISHED??
+			// 	// var thisImageData = newContext.getImageData(0,0,50,50);
+			// 	// console.log(thisImageData);
+			// 	//dataURIs[i] = thisCanvas.toDataURL();
+			// 	//console.log(dataURIs[i]);
+			// 	// console.log(dataURIs);
+			// }
+			// console.log(paletteArray);
+
+		}
+
+		// function getPixels(){}
+
+	</script>
+</body>
+</html>
