@@ -1,9 +1,5 @@
-	
-	// for each imgURL
-		// create img
-		// load url into img
-			// get palette from color theif
-			// visualize palette wedge (pallete)
+//link to photo
+//
 
 function drawWedge(palette, imageCount, dayNum){
 
@@ -13,12 +9,12 @@ function drawWedge(palette, imageCount, dayNum){
 	//imageCount for each image 
 	var startPos = 0;
 
-	var segHeight = 50;
+	var segHeight = 40;
 	var innerRad = 150;
 	var outerRad = innerRad+segHeight;
 	var startAng;
 	var endAng;
-	var sliceAngle = 51/10;
+	var sliceAngle = 50/10;
 
 	for(var clrCount = 0; clrCount<5; clrCount++){
 		colour = palette[clrCount]; 
@@ -28,8 +24,8 @@ function drawWedge(palette, imageCount, dayNum){
 		console.log(colour);
 
 		//convert angles to radians for use in d3.svg.arc()
-		startAng = Math.radians( (dayNum*51) + (imageCount*sliceAngle));
-		endAng = Math.radians( (((dayNum*51)-0.5)+sliceAngle) + (imageCount*sliceAngle) ); //-0.5 to have 0.5˚ gap between them.
+		startAng = Math.radians( (dayNum*51.43) + (imageCount*sliceAngle));
+		endAng = Math.radians( (((dayNum*51.43)-0.5)+sliceAngle) + (imageCount*sliceAngle) ); //-0.5 to have 0.5˚ gap between them.
 
 		//create arc svg
 		var arc = d3.svg.arc()
@@ -44,7 +40,8 @@ function drawWedge(palette, imageCount, dayNum){
 		        return "rgb("+colour[0]+","+colour[1]+","+colour[2]+")";
 		    })
 		    .attr("stroke-width", "5")
-			.attr("transform", "translate(600,400)");
+		    .attr("transform", "translate(350,350) rotate(-94.5)");
+			// .attr("transform", "translate(600,400)");
 
 		//inrease radii
 		innerRad+=segHeight;
@@ -105,14 +102,16 @@ function loadData()
 {
 	var days = [];
 
-	days[0] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=af3ac3bb7df2e70aa56921478847b6c2&per_page=10&format=json&nojsoncallback=1&api_sig=06333dfbfc223cdb20aac0ed6ae9f61d"; 
-	days[1] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=af3ac3bb7df2e70aa56921478847b6c2&date=2014-04-08&per_page=10&format=json&nojsoncallback=1&api_sig=db8ce82987ce5f558009fb5095d60c77";
-	days[2] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=af3ac3bb7df2e70aa56921478847b6c2&date=2014-04-07&per_page=10&format=json&nojsoncallback=1&api_sig=08c106286e9a5aeb081f1e98272a9591";
-	days[3] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=af3ac3bb7df2e70aa56921478847b6c2&date=2014-04-06&per_page=10&format=json&nojsoncallback=1&api_sig=afd8e495190a967aa3a3279642ceeb36";
-	days[4] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=af3ac3bb7df2e70aa56921478847b6c2&date=2014-04-05&per_page=10&format=json&nojsoncallback=1&api_sig=fe154fea3840815f525bdbae2fbe508f";
+	days[0] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=8a5f0b3e222015eb6b8efbbe47f5cc4e&per_page=10&format=json&nojsoncallback=1&auth_token=72157643823247705-175f9f914237f833&api_sig=f53bebedcb2b138d729240a30d677f31"; 
+	days[1] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=8a5f0b3e222015eb6b8efbbe47f5cc4e&date=2014-04-10&per_page=10&format=json&nojsoncallback=1&auth_token=72157643823247705-175f9f914237f833&api_sig=1e6bddaec141f6c00bff315d4d293428";
+	days[2] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=8a5f0b3e222015eb6b8efbbe47f5cc4e&date=2014-04-09&per_page=10&format=json&nojsoncallback=1&auth_token=72157643823247705-175f9f914237f833&api_sig=20421823ffdb267c9cd3f7c401f01251";
+	days[3] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=8a5f0b3e222015eb6b8efbbe47f5cc4e&date=2014-04-08&per_page=10&format=json&nojsoncallback=1&auth_token=72157643823247705-175f9f914237f833&api_sig=f4c01a06da77143e42690a26dd432da3";
+	days[4] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=8a5f0b3e222015eb6b8efbbe47f5cc4e&date=2014-04-07&per_page=10&format=json&nojsoncallback=1&auth_token=72157643823247705-175f9f914237f833&api_sig=168925be588132b49babef90a6569492";
+	days[5] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=8a5f0b3e222015eb6b8efbbe47f5cc4e&date=2014-04-06&per_page=10&format=json&nojsoncallback=1&auth_token=72157643823247705-175f9f914237f833&api_sig=2df71576e0eb0c19381991d08d5860bd";
+	days[6] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=8a5f0b3e222015eb6b8efbbe47f5cc4e&date=2014-04-05&per_page=10&format=json&nojsoncallback=1&auth_token=72157643823247705-175f9f914237f833&api_sig=60bd988d73aaa65a0e654055dbb71916";
 
 	var index=0;
-	for(index=0; index<5; index++){
+	for(index=0; index<7; index++){
 		loadFile(days[index], index);
 	}
 }
