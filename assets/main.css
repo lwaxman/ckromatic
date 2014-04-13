@@ -11,12 +11,13 @@ html{
 
 #chart{
 	position: absolute;
-	/*z-index: 10;*/
-	/*left: 50%;
-	top: 50%;*/
+	/*background: blue;*/
+	left: 50%;
+	top: 50%;
+	margin-left: -35rem;
+	margin-top: -35rem;
 	width: 70rem;
-	height: 700rem;
-	/*border: blue 2px solid;*/
+	height: 70rem;
 }
 
 p{
@@ -45,15 +46,7 @@ p{
 	top: 5rem;
 }
 
-/*.image{
-	position: relative;
-	top: 10rem;
-	display: none;
-	margin: .2rem;
-	background: black;
-}*/
-
-.char1{
+/*.char1{
 	text-shadow: -2px 2px #63BCFF;
 }
 .char2{
@@ -73,6 +66,6 @@ p{
 }
 .char7{
 	text-shadow: -2px 2px #D9E964;
-}
+}*/
 
 
