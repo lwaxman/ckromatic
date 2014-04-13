@@ -159,13 +159,13 @@ function loadData()
 {
 	var days = [];
 
-	days[0] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=c3423054cb5cdeff0d768eeb5fd3ab91&date=2014-04-11&per_page=10&format=json&nojsoncallback=1&auth_token=72157643863957655-7d200500d5d46313&api_sig=2e3277d867dc35e3f3fa25398a4c5000";
-	days[1] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=c3423054cb5cdeff0d768eeb5fd3ab91&date=2014-04-10&per_page=10&format=json&nojsoncallback=1&auth_token=72157643863957655-7d200500d5d46313&api_sig=867be10645e7daf20de059bb2b4b0e69";
-	days[2] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=c3423054cb5cdeff0d768eeb5fd3ab91&date=2014-04-09&per_page=10&format=json&nojsoncallback=1&auth_token=72157643863957655-7d200500d5d46313&api_sig=258bd983bd7ecd5a4cd57bfd1cee2d0a";
-	days[3] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=c3423054cb5cdeff0d768eeb5fd3ab91&date=2014-04-08&per_page=10&format=json&nojsoncallback=1&auth_token=72157643863957655-7d200500d5d46313&api_sig=a47cf57b0d0d2b6dfecd220c895d386c";
-	days[4] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=c3423054cb5cdeff0d768eeb5fd3ab91&date=2014-04-07&per_page=10&format=json&nojsoncallback=1&auth_token=72157643863957655-7d200500d5d46313&api_sig=32cd4c1142ad287b353638ae8978caec";
-	days[5] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=c3423054cb5cdeff0d768eeb5fd3ab91&date=2014-04-06&per_page=10&format=json&nojsoncallback=1&auth_token=72157643863957655-7d200500d5d46313&api_sig=25ad112ca768b2423b772b6091b43485";
-	days[6] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=c3423054cb5cdeff0d768eeb5fd3ab91&date=2014-04-05&per_page=10&format=json&nojsoncallback=1&auth_token=72157643863957655-7d200500d5d46313&api_sig=35aec115ae5af05ba0f9eb5b83b52404";
+	days[0] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=1d3a58c747c9459a78d136c7d424d97c&date=2014-04-12&per_page=10&format=json&nojsoncallback=1&auth_token=72157643900172085-b11564b1e03b2e6f&api_sig=40a7e5b7a5ca30fdeed207a884fa7b26";
+	days[1] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=1d3a58c747c9459a78d136c7d424d97c&date=2014-04-11&per_page=10&format=json&nojsoncallback=1&auth_token=72157643900172085-b11564b1e03b2e6f&api_sig=078f8e652d543eee9986b10a06c10869";
+	days[2] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=1d3a58c747c9459a78d136c7d424d97c&date=2014-04-10&per_page=10&format=json&nojsoncallback=1&auth_token=72157643900172085-b11564b1e03b2e6f&api_sig=c5d5f1913c9775d24ea6bd3252291998";
+	days[3] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=1d3a58c747c9459a78d136c7d424d97c&date=2014-04-09&per_page=10&format=json&nojsoncallback=1&auth_token=72157643900172085-b11564b1e03b2e6f&api_sig=3bb8e0fcfe4db49c06ebe6ac6e2fb7eb";
+	days[4] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=1d3a58c747c9459a78d136c7d424d97c&date=2014-04-08&per_page=10&format=json&nojsoncallback=1&auth_token=72157643900172085-b11564b1e03b2e6f&api_sig=c55527ab49fc3bae5f516af1f6c19949";
+	days[5] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=1d3a58c747c9459a78d136c7d424d97c&date=2014-04-07&per_page=10&format=json&nojsoncallback=1&auth_token=72157643900172085-b11564b1e03b2e6f&api_sig=f4122f9941ba86be80d472366cf680b4";
+	days[6] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=1d3a58c747c9459a78d136c7d424d97c&date=2014-04-06&per_page=10&format=json&nojsoncallback=1&auth_token=72157643900172085-b11564b1e03b2e6f&api_sig=462ea495d42343910c879b14a3c61ce2";
 
 	var index=0;
 	for(index=0; index<7; index++){
