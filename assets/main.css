@@ -14,10 +14,20 @@ html{
 	/*background: blue;*/
 	left: 50%;
 	top: 50%;
-	margin-left: -35rem;
+	margin-left: -15rem;
 	margin-top: -35rem;
 	width: 70rem;
 	height: 70rem;
+}
+
+#daysImage{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -20rem;
+	margin-top: -40rem;
+	width: 80rem;
+	height: 80rem;
 }
 
 p{
@@ -44,6 +54,18 @@ p{
 	width: 20rem;
 	position: absolute;
 	top: 5rem;
+}
+
+#pictureBox{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: 6rem;
+	margin-top: -14rem;
+	width: 28rem;
+	height: 28rem;
+	background: #FFF;
+	border-radius: 50%;
 }
 
 /*.char1{

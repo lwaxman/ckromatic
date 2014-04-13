@@ -1,34 +1,13 @@
 //link to photo
 //read 10 colours, display only the most vivid
 
-function drawWedge(palette, imageCount, dayNum){
-
-	// console.log(index);
-	// console.log(imageCount);
-
-	//imageCount for each image 
-	var startPos = 0;
-
-	var segHeight = 40; 
-	var innerRad = 150;
-	var outerRad = innerRad+segHeight;
-	var startAng;
-	var endAng;
-	var sliceAngle = 50/10;
+function getSaturations(palette){
 
 	var Color = net.brehaut.Color;
-	// var readColour; //colour to get saturation from
-	// var saturation; //saturation
-
-	// var colour; //colour to draw from
-	var clrObject;
-	var clrObjects = [];
 	var satObject;
 	var satObjects = [];
-	var lumObject;
-	var lumObjects = [];
 
-	for(var satCount = 0; satCount<15; satCount++){ //5
+	for(var satCount = 0; satCount<12; satCount++){ //5
 
 		var colour = palette[satCount]; 
 
@@ -43,10 +22,19 @@ function drawWedge(palette, imageCount, dayNum){
 		});
 		satObjects.reverse();
 	}
+	return getLuminances(satObjects);
+}
+
+
+function getLuminances(palette){
+
+	var Color = net.brehaut.Color
+	var lumObject;
+	var lumObjects = [];
 
 	for(var lumCount = 0; lumCount<5; lumCount++){
 
-		var colour = satObjects[lumCount].colour; 
+		var colour = palette[lumCount].colour; 
 
 		var readColour = Color(colour);
 		var luminance = readColour.getLightness();
@@ -57,12 +45,31 @@ function drawWedge(palette, imageCount, dayNum){
 		lumObjects.sort(function(obj1, obj2){
 			return obj1.luminance - obj2.luminance;
 		});
-		// lumObjects.reverse();
 	}
+	return lumObjects;
+}
+
+
+function drawWedge(palette, imageCount, dayNum, url){
+	//imageCount for each image 
+
+	var segHeight = 40; 
+	var innerRad = 150;
+	var outerRad = innerRad+segHeight;
+	var startAng;
+	var endAng;
+	var sliceAngle = 50/10;
+
+	var clrObject;
+	var clrObjects = [];
+
+	var fullImage;
 
 	for(var clrCount = 0; clrCount<5; clrCount++){ //5
 
-		var thisColour = lumObjects[clrCount].colour;
+		clrObjects = getSaturations(palette);
+
+		var thisColour = clrObjects[clrCount].colour;
 
 		//convert angles to radians for use in d3.svg.arc()
 		startAng = Math.radians( (dayNum*51.43) + (imageCount*sliceAngle));
@@ -77,19 +84,30 @@ function drawWedge(palette, imageCount, dayNum){
 
 		d3.select('#chart').append("path")
 			.attr("d", arc) //add arc svg to chart
+			.attr("id", "imageSVG")
 			.attr("fill", function(d){
 		        return "rgb("+thisColour[0]+","+thisColour[1]+","+thisColour[2]+")";
 		    })
-		    .attr("stroke-width", "5")
-		    .attr("transform", "translate(350,350) rotate(-94.5)");
-			// .attr("transform", "translate(600,400)");
-
+		    .on("mouseover", function(){ 
+		    	fullImage = url;
+		    	var sansProxy = fullImage.replace("./proxy.php?src=", "");
+		    	console.log(sansProxy);
+				var sansSize = sansProxy.replace("_s", "");
+            	d3.select("#pictureBox")
+            		.style("background-image", "url("+ sansSize +")")
+            		.style("background-position", "center");
+	        })
+	        .on("mouseout", function(){
+	        	d3.select("#pictureBox")
+		        	.style("background", "#FFF");
+	        })
+		    .attr("transform", "translate(350,350) rotate(-94.5)"); //-94.5 to get day 1 to start at 0˚
 		//inrease radii
 		innerRad+=segHeight;
 		outerRad+=segHeight;
-		startPos+=60;		
 	}
-	console.log(clrObjects);
+	// console.log(clrObjects);
+
 }
 
 
@@ -100,8 +118,8 @@ function getPalette(urls, dayNum){
 		var img = new Image;
 		img.onload = function(){
 			var colourThief = new ColorThief();
-			var palette = colourThief.getPalette(img, 16);
-			drawWedge(palette, urlCount, dayNum);
+			var palette = colourThief.getPalette(img, 13);
+			drawWedge(palette, urlCount, dayNum, urls[urlCount-1]);
 		};
 		img.src = urls[urlCount];
 	}
@@ -129,12 +147,9 @@ function visualizeDay(photosData, dayNum) {
 }
 
 
-
-
-
 function loadFile(url, fileIndex) {
 	d3.json(url, function(data) {
-		console.log("File Loaded", url, data);
+		// console.log("File Loaded", url, data);
 		visualizeDay(data.photos.photo, fileIndex); //path to each individual photo
 	});	
 }
