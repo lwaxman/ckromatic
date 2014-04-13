@@ -28,7 +28,7 @@ function drawWedge(palette, imageCount, dayNum){
 	var lumObject;
 	var lumObjects = [];
 
-	for(var satCount = 0; satCount<9; satCount++){ //5
+	for(var satCount = 0; satCount<15; satCount++){ //5
 
 		var colour = palette[satCount]; 
 
@@ -49,7 +49,7 @@ function drawWedge(palette, imageCount, dayNum){
 		var colour = satObjects[lumCount].colour; 
 
 		var readColour = Color(colour);
-		var luminance = readColour.getValue();
+		var luminance = readColour.getLightness();
 
 		lumObject = {colour:colour, luminance:luminance}; 
 		lumObjects[lumCount] = lumObject;
@@ -100,7 +100,7 @@ function getPalette(urls, dayNum){
 		var img = new Image;
 		img.onload = function(){
 			var colourThief = new ColorThief();
-			var palette = colourThief.getPalette(img, 10);
+			var palette = colourThief.getPalette(img, 16);
 			drawWedge(palette, urlCount, dayNum);
 		};
 		img.src = urls[urlCount];
