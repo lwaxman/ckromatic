@@ -48,9 +48,11 @@ html{
 #titleOne{
 	position: relative;
 	font-size: 5rem;
-	top: -6rem;
+	top: -9rem;
 	width: 30rem;
-	text-align: center;
+	left: 0.5rem;
+/*	height: 10rem;
+*/	text-align: center;
 }
 
 #copy{
@@ -59,7 +61,7 @@ html{
 	font-weight: 200;
 	width: 25rem;
 	left: 2.5rem;
-	top: -6rem;
+	top: -14rem;
 	text-align: center;
 }
 
