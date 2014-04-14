@@ -7,6 +7,8 @@
 html{
 	font-size: 10px;
 	font-family: 'Roboto', sans-serif;
+	background: black;
+	color: white;
 }
 
 #chart{
@@ -14,7 +16,7 @@ html{
 	/*background: blue;*/
 	left: 50%;
 	top: 50%;
-	margin-left: -15rem;
+	margin-left: -35rem;
 	margin-top: -35rem;
 	width: 70rem;
 	height: 70rem;
@@ -24,70 +26,70 @@ html{
 	position: absolute;
 	left: 50%;
 	top: 50%;
-	margin-left: -20rem;
+	margin-left: -40rem;
 	margin-top: -40rem;
 	width: 80rem;
 	height: 80rem;
 }
 
-p{
-	font-size: 5rem;
-	font-weight: 700;
-	text-shadow: -2px 2px #B1D1E6;
+.fade{
+	transition: opacity .5s ease-in-out;
 }
 
-#titleBox{
+#text{
 	position: absolute;
 	left: 50%;
-	width: 20rem;
-	top:34rem;
-	margin-left: -10rem;
+	top: 50%;
+	width: 30rem;
+	margin-left: -15rem;
 	text-align: center;
 }
 
 #titleOne{
-	width: 20rem;
-	position: absolute;
+	position: relative;
+	font-size: 5rem;
+	top: -6rem;
+	width: 30rem;
+	text-align: center;
 }
 
-#titleTwo{
-	width: 20rem;
-	position: absolute;
-	top: 5rem;
+#copy{
+	position: relative;
+	font-size: 1.4rem;
+	font-weight: 200;
+	width: 25rem;
+	left: 2.5rem;
+	top: -6rem;
+	text-align: center;
+}
+
+a{
+	color: #6666FF;
+	font-weight: 400;
+	text-decoration: none;
+}
+a:visited{
+	color: #1975A3;
+}
+a:hover{
+	color: #4DB8FF;
+	/*text-shadow: 1px -1px #FF9999;*/
+}
+
+#imageSVG{
+	cursor: pointer;
 }
 
 #pictureBox{
 	position: absolute;
+	opacity: 0;
 	left: 50%;
 	top: 50%;
-	margin-left: 6rem;
+	margin-left: -14rem;
 	margin-top: -14rem;
 	width: 28rem;
 	height: 28rem;
 	background: #FFF;
 	border-radius: 50%;
 }
-
-/*.char1{
-	text-shadow: -2px 2px #63BCFF;
-}
-.char2{
-	text-shadow: -2px 2px #4DB9AB;
-}
-.char3{
-	text-shadow: -2px 2px #BC5EFF; 
-}
-.char4{
-	text-shadow: -2px 2px #6C66FF;
-}
-.char5{
-	text-shadow: -2px 2px #9EDBAD;
-}
-.char6{
-	text-shadow: -2px 2px #FF0084;
-}
-.char7{
-	text-shadow: -2px 2px #D9E964;
-}*/
-
 

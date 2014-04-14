@@ -45,13 +45,15 @@ function getLuminances(palette){
 		lumObjects.sort(function(obj1, obj2){
 			return obj1.luminance - obj2.luminance;
 		});
+		lumObjects.reverse();
 	}
 	return lumObjects;
 }
 
 
-function drawWedge(palette, imageCount, dayNum, url){
+function drawWedge(palette, imageCount, dayNum, url, pageLink){
 	//imageCount for each image 
+
 
 	var segHeight = 40; 
 	var innerRad = 150;
@@ -86,22 +88,32 @@ function drawWedge(palette, imageCount, dayNum, url){
 			.attr("d", arc) //add arc svg to chart
 			.attr("id", "imageSVG")
 			.attr("fill", function(d){
-		        return "rgb("+thisColour[0]+","+thisColour[1]+","+thisColour[2]+")";
-		    })
-		    .on("mouseover", function(){ 
-		    	fullImage = url;
-		    	var sansProxy = fullImage.replace("./proxy.php?src=", "");
-		    	console.log(sansProxy);
+				return "rgb("+thisColour[0]+","+thisColour[1]+","+thisColour[2]+")";
+			})
+			.on("click", function(){
+				window.location = pageLink;
+			})
+			.on("mouseover", function(){ 
+				fullImage = url;
+				var sansProxy = fullImage.replace("./proxy.php?src=", "");
+				console.log(sansProxy);
 				var sansSize = sansProxy.replace("_s", "");
-            	d3.select("#pictureBox")
-            		.style("background-image", "url("+ sansSize +")")
-            		.style("background-position", "center");
-	        })
-	        .on("mouseout", function(){
-	        	d3.select("#pictureBox")
-		        	.style("background", "#FFF");
-	        })
-		    .attr("transform", "translate(350,350) rotate(-94.5)"); //-94.5 to get day 1 to start at 0˚
+				d3.select("#pictureBox")
+					.attr("class", "fade")
+					.style("background-image", "url("+ sansSize +")")
+					.style("background-position", "center")
+					.style("opacity", "1");
+				$("#text").css("opacity", "0");
+				// d3.select(".text")
+				// 	.attr("class", "fade")
+				// 	.style("opacity", "0");
+			})
+			.on("mouseout", function(){
+				d3.select("#pictureBox")
+					.style("opacity", "0");
+				$("#text").css("opacity", "1");
+			})
+			.attr("transform", "translate(350,350) rotate(-94.5)"); //-94.5 to get day 1 to start at 0˚
 		//inrease radii
 		innerRad+=segHeight;
 		outerRad+=segHeight;
@@ -111,7 +123,7 @@ function drawWedge(palette, imageCount, dayNum, url){
 }
 
 
-function getPalette(urls, dayNum){
+function getPalette(urls, pageURLs, dayNum){
 	for(var urlCount=0; urlCount<urls.length; urlCount++){		
 	
 		// var palette;	
@@ -119,7 +131,7 @@ function getPalette(urls, dayNum){
 		img.onload = function(){
 			var colourThief = new ColorThief();
 			var palette = colourThief.getPalette(img, 13);
-			drawWedge(palette, urlCount, dayNum, urls[urlCount-1]);
+			drawWedge(palette, urlCount, dayNum, urls[urlCount-1], pageURLs[urlCount-1]);
 		};
 		img.src = urls[urlCount];
 	}
@@ -128,7 +140,7 @@ function getPalette(urls, dayNum){
 
 function visualizeDay(photosData, dayNum) {
 	var imgURLs = [];
-	
+	var pageURLs = [];
 	// populate imgURLs
 	for(index=0; index<photosData.length; index++){
 		var photoData = photosData[index];
@@ -141,8 +153,10 @@ function visualizeDay(photosData, dayNum) {
 					+ "_"
 					+ photoData.secret 
 					+ "_s.jpg";
+		var pageURL = "https://www.flickr.com/photos/"+photoData.owner +"/"+ photoData.id +"/";
 		imgURLs.push(imgURL);
-		getPalette(imgURLs, dayNum);
+		pageURLs.push(pageURL);
+		getPalette(imgURLs, pageURLs, dayNum);
 	}
 }
 
@@ -159,12 +173,12 @@ function loadData()
 {
 	var days = [];
 
-	days[0] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=1d3a58c747c9459a78d136c7d424d97c&date=2014-04-12&per_page=10&format=json&nojsoncallback=1&auth_token=72157643900172085-b11564b1e03b2e6f&api_sig=40a7e5b7a5ca30fdeed207a884fa7b26";
-	days[1] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=1d3a58c747c9459a78d136c7d424d97c&date=2014-04-11&per_page=10&format=json&nojsoncallback=1&auth_token=72157643900172085-b11564b1e03b2e6f&api_sig=078f8e652d543eee9986b10a06c10869";
-	days[2] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=1d3a58c747c9459a78d136c7d424d97c&date=2014-04-10&per_page=10&format=json&nojsoncallback=1&auth_token=72157643900172085-b11564b1e03b2e6f&api_sig=c5d5f1913c9775d24ea6bd3252291998";
-	days[3] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=1d3a58c747c9459a78d136c7d424d97c&date=2014-04-09&per_page=10&format=json&nojsoncallback=1&auth_token=72157643900172085-b11564b1e03b2e6f&api_sig=3bb8e0fcfe4db49c06ebe6ac6e2fb7eb";
-	days[4] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=1d3a58c747c9459a78d136c7d424d97c&date=2014-04-08&per_page=10&format=json&nojsoncallback=1&auth_token=72157643900172085-b11564b1e03b2e6f&api_sig=c55527ab49fc3bae5f516af1f6c19949";
-	days[5] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=1d3a58c747c9459a78d136c7d424d97c&date=2014-04-07&per_page=10&format=json&nojsoncallback=1&auth_token=72157643900172085-b11564b1e03b2e6f&api_sig=f4122f9941ba86be80d472366cf680b4";
+	days[0] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=e33074ace6154eb96a87b3cee46a906c&date=2014-04-12&per_page=10&format=json&nojsoncallback=1&api_sig=42891f1a4d293cec58bdfa970ecf175e";
+	days[1] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=e33074ace6154eb96a87b3cee46a906c&date=2014-04-11&per_page=10&format=json&nojsoncallback=1&api_sig=aaf3857df0763a57c32c3ea8c933f7ce";
+	days[2] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=e33074ace6154eb96a87b3cee46a906c&date=2014-04-10&per_page=10&format=json&nojsoncallback=1&api_sig=23e377dd2c7b311a288cea03c4fd6e24";
+	days[3] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=e33074ace6154eb96a87b3cee46a906c&date=2014-04-09&per_page=10&format=json&nojsoncallback=1&api_sig=073046b29fb27af019168b0a74721c88";
+	days[4] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=e33074ace6154eb96a87b3cee46a906c&date=2014-04-08&per_page=10&format=json&nojsoncallback=1&api_sig=5e07c99f1018a6295e5ce5023da02f9b";
+	days[5] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=e33074ace6154eb96a87b3cee46a906c&date=2014-04-07&per_page=10&format=json&nojsoncallback=1&api_sig=98241a345cee0ba4c3aa722d038b836c";
 	days[6] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=e33074ace6154eb96a87b3cee46a906c&date=2014-04-06&per_page=10&format=json&nojsoncallback=1&api_sig=2d534de826d44293b26a1a0af11fa499";
 
 	var index=0;
