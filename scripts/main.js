@@ -165,7 +165,7 @@ function loadData()
 	days[3] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=1d3a58c747c9459a78d136c7d424d97c&date=2014-04-09&per_page=10&format=json&nojsoncallback=1&auth_token=72157643900172085-b11564b1e03b2e6f&api_sig=3bb8e0fcfe4db49c06ebe6ac6e2fb7eb";
 	days[4] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=1d3a58c747c9459a78d136c7d424d97c&date=2014-04-08&per_page=10&format=json&nojsoncallback=1&auth_token=72157643900172085-b11564b1e03b2e6f&api_sig=c55527ab49fc3bae5f516af1f6c19949";
 	days[5] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=1d3a58c747c9459a78d136c7d424d97c&date=2014-04-07&per_page=10&format=json&nojsoncallback=1&auth_token=72157643900172085-b11564b1e03b2e6f&api_sig=f4122f9941ba86be80d472366cf680b4";
-	days[6] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=1d3a58c747c9459a78d136c7d424d97c&date=2014-04-06&per_page=10&format=json&nojsoncallback=1&auth_token=72157643900172085-b11564b1e03b2e6f&api_sig=462ea495d42343910c879b14a3c61ce2";
+	days[6] = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=e33074ace6154eb96a87b3cee46a906c&date=2014-04-06&per_page=10&format=json&nojsoncallback=1&api_sig=2d534de826d44293b26a1a0af11fa499";
 
 	var index=0;
 	for(index=0; index<7; index++){
