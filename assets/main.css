@@ -6,7 +6,8 @@
 
 html{
 	font-size: 10px;
-	font-family: 'Roboto', sans-serif;
+	/*font-family: 'Roboto', sans-serif;*/
+	font-family: 'Nunito', sans-serif;
 	background: black;
 	color: white;
 }
